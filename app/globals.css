@@ -40,3 +40,9 @@ a {
     color-scheme: dark;
   }
 }
+
+@font-face {
+  font-family: "Digital7";
+  src: url("/fonts/digital-7.ttf") format("truetype");
+  font-display: swap;
+}
