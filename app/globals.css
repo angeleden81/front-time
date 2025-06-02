@@ -43,6 +43,6 @@ a {
 
 @font-face {
   font-family: "Digital7";
-  src: url("/fonts/digital-7.ttf") format("truetype");
+  src: url("/fonts/digital-7-mono.ttf") format("truetype");
   font-display: swap;
 }

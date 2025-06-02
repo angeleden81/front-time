@@ -2,11 +2,19 @@
 
 import ConnectWallet from "@/components/ConnectWallet";
 import TimeCircuitOverlay from "@/components/TimeCircuitOverlay";
+import FluxCapacitor from "@/components/FluxCapacitor";
+import FuelGauge from "@/components/FuelGauge";
+import SpeedDisplay from "@/components/SpeedDisplay";
+
+<SpeedDisplay />;
 
 export default function Home() {
   return (
     <main style={styles.main}>
       <h1 style={styles.title}>⛏️ Time Circuit APY</h1>
+      <FuelGauge level={90} />
+      <SpeedDisplay />
+      <FluxCapacitor />
 
       <TimeCircuitOverlay />
 

@@ -1,0 +1,92 @@
+.flux-wrapper {
+  position: relative;
+  width: 300px;
+  height: 400px;
+  margin-bottom: 2rem;
+  filter: drop-shadow(0 0 10px #ffffff); /* légèrement blanc au lieu de bleu */
+}
+
+.flux-wrapper::after {
+  content: "";
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  right: -20px;
+  bottom: -20px;
+  border-radius: 20px;
+  pointer-events: none;
+  z-index: 0;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.3) 20%,
+    transparent 70%
+  );
+  animation: haloPulse 4s ease-in-out infinite;
+}
+
+.flux-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  z-index: 1;
+  border-radius: 12px;
+}
+.spark {
+  position: absolute;
+  width: 4px;
+  height: 40px;
+  background: white;
+  opacity: 1;
+  border-radius: 2px;
+  animation: pulseGlow 2.5s infinite ease-in-out;
+  z-index: 2;
+  box-shadow: 0 0 30px white, 0 0 60px white, 0 0 100px #f0f0f0,
+    0 0 140px #e0e0e0, 0 0 200px #c0c0c0;
+}
+
+.spark1 {
+  top: 135px;
+  left: 110px;
+  transform: rotate(-224deg);
+  animation-delay: 1.2s;
+}
+
+.spark2 {
+  top: 135px;
+  right: 110px;
+  transform: rotate(-137deg);
+  animation-delay: 1.2s;
+}
+
+.spark3 {
+  bottom: 145px;
+  left: 50%;
+  transform: translateX(-50%) rotate(180deg);
+  animation-delay: 1.2s;
+}
+
+@keyframes pulseGlow {
+  0%,
+  100% {
+    opacity: 0.6;
+    box-shadow: 0 0 30px white, 0 0 60px #f8f8f8, 0 0 80px #e8e8e8;
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 80px white, 0 0 140px #f0f0f0, 0 0 200px #e0e0e0,
+      0 0 260px #d0d0d0;
+  }
+}
+@keyframes haloPulse {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
+    filter: blur(15px);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.05);
+    filter: blur(25px);
+  }
+}

@@ -121,7 +121,7 @@ const positionMap = {
     day: [195, 35],
     year: [300, 35],
     hour: [480, 35],
-    min: [600, 35],
+    min: [580, 35],
     ampmAM: [450, 45],
     ampmPM: [448, 83],
   },
