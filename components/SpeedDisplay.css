@@ -17,8 +17,8 @@
   left: 60px;
   font-family: "Digital7", monospace;
   font-size: 70px;
-  color: #cc0000; /* ⬅️ Rouge moins saturé */
-  text-shadow: 0 0 2px #cc0000, 0 0 4px #cc0000, 0 0 6px #880000; /* ⬅️ Halo atténué */
+  color: #ff1a1a; /* rouge net, pas saturé */
+  text-shadow: 0 0 0.5px #ff1a1a, 0 0 1px #550000; /* ombre douce et sombre */
   letter-spacing: 15px;
   user-select: none;
 }
