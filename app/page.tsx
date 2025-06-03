@@ -20,17 +20,57 @@ export default function Home() {
   return (
     <PowerProvider>
       <main style={styles.main}>
+        {/* Wallet en haut à droite */}
+        <div style={styles.walletContainer}>
+          <WalletSection />
+        </div>
+
+        {/* Titre centré */}
         <h1 style={styles.title}>⛏️ Time Circuit APY</h1>
-        <FuelGauge level={90} />
-        <SpeedDisplay />
-        <FluxCapacitor />
-        <TemperatureGauge />
 
-        <FuelCan active={isFuelAvailable} />
-        <PowerButton initial={false} />
-        <PlutoniumButton />
-        <TimeCircuitOverlay />
+        {/* Groupe supérieur : jauges principales */}
+        <section style={styles.sectionRow}>
+          <SpeedDisplay />
+        </section>
 
+        {/* Groupe central : circuit visuel */}
+        <section style={styles.section}>
+          <FluxCapacitor />
+          <div style={styles.timeCircuitRow}>
+            {/* Colonne de gauche */}
+            <div style={styles.timeCircuitRow}>
+              <div style={styles.leftColumn}>
+                <div style={styles.scaledComponent}>
+                  <TemperatureGauge />
+                </div>
+                <div style={styles.scaledComponent}>
+                  <FuelGauge level={90} />
+                </div>
+              </div>
+
+              <div style={styles.scaledComponent}>
+                <TimeCircuitOverlay />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Groupe actions : capsules + boutons */}
+        <section style={styles.section}>
+          <div style={styles.row}>
+            <FuelCan active={isFuelAvailable} />
+          </div>
+
+          <div style={{ marginTop: "1rem" }}>
+            <PowerButton initial={false} />
+          </div>
+
+          <div style={{ marginTop: "1rem" }}>
+            <PlutoniumButton />
+          </div>
+        </section>
+
+        {/* Groupe boutons d'action */}
         <div style={styles.buttonGroup}>
           {["Démarrer", "Récolter", "Refroidir"].map((label) => (
             <button
@@ -47,8 +87,6 @@ export default function Home() {
             </button>
           ))}
         </div>
-
-        <WalletSection />
       </main>
     </PowerProvider>
   );
@@ -61,18 +99,48 @@ const styles = {
     minHeight: "100vh",
     display: "flex",
     flexDirection: "column" as const,
-    justifyContent: "center",
     alignItems: "center",
     padding: "2rem",
+    position: "relative" as const,
+  },
+  walletContainer: {
+    position: "absolute" as const,
+    top: "1rem",
+    right: "1rem",
+    zIndex: 10,
   },
   title: {
     fontSize: "2.5rem",
-    marginBottom: "1.5rem",
+    marginBottom: "2rem",
     textShadow: "0 0 10px #8b43f1",
+    textAlign: "center" as const,
+  },
+  section: {
+    marginBottom: "2rem",
+    display: "flex",
+    flexDirection: "column" as const,
+    alignItems: "center",
+    gap: "1rem",
+  },
+  sectionRow: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: "2rem",
+    marginBottom: "2rem",
+    flexWrap: "wrap" as const,
+  },
+  row: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: "1.5rem",
+    flexWrap: "wrap" as const,
   },
   buttonGroup: {
     display: "flex",
     gap: "1rem",
+    marginTop: "2rem",
     marginBottom: "2rem",
     flexWrap: "wrap" as const,
     justifyContent: "center",
@@ -88,7 +156,25 @@ const styles = {
     cursor: "pointer",
     transition: "transform 0.1s ease-in-out",
   },
-  section: {
+  timeCircuitRow: {
+    display: "flex",
+    flexDirection: "row" as const,
+    justifyContent: "center",
+    alignItems: "center",
+    gap: "3rem",
     marginBottom: "2rem",
+    flexWrap: "wrap" as const,
+  },
+
+  leftColumn: {
+    display: "flex",
+    flexDirection: "column" as const,
+    gap: "1.5rem",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  scaledComponent: {
+    transform: "scale(0.75)",
+    transformOrigin: "center",
   },
 };
