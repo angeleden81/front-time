@@ -35,38 +35,41 @@ export default function Home() {
 
         {/* Groupe central : circuit visuel */}
         <section style={styles.section}>
-          <FluxCapacitor />
           <div style={styles.timeCircuitRow}>
-            {/* Colonne de gauche */}
-            <div style={styles.timeCircuitRow}>
-              <div style={styles.leftColumn}>
-                <div style={styles.scaledComponent}>
-                  <TemperatureGauge />
-                </div>
-                <div style={styles.scaledComponent}>
-                  <FuelGauge level={90} />
-                </div>
+            {/* Colonne de gauche avec tous les éléments empilés */}
+            <div style={styles.leftColumn}>
+              <div style={styles.scaledComponent}>
+                <FuelCan active={isFuelAvailable} />
               </div>
-
+              <div style={styles.scaledComponent}>
+                <PowerButton initial={false} />
+              </div>
+              <div style={styles.scaledComponent}>
+                <TemperatureGauge />
+              </div>
+              <div style={styles.scaledComponent}>
+                <FuelGauge level={90} />
+              </div>
+            </div>
+            {/* Colonne centrale */}
+            <div style={styles.centerColumn}>
               <div style={styles.scaledComponent}>
                 <TimeCircuitOverlay />
               </div>
+
+              {/* Colonne droite : plutonium + flux */}
+              <div style={styles.rightColumn}>
+                <div style={styles.scaledComponent}>
+                  <PlutoniumCapsule />
+                </div>
+                <div style={styles.scaledComponent}>
+                  <PlutoniumButton />
+                </div>
+                <div style={styles.scaledComponent}>
+                  <FluxCapacitor />
+                </div>
+              </div>
             </div>
-          </div>
-        </section>
-
-        {/* Groupe actions : capsules + boutons */}
-        <section style={styles.section}>
-          <div style={styles.row}>
-            <FuelCan active={isFuelAvailable} />
-          </div>
-
-          <div style={{ marginTop: "1rem" }}>
-            <PowerButton initial={false} />
-          </div>
-
-          <div style={{ marginTop: "1rem" }}>
-            <PlutoniumButton />
           </div>
         </section>
 
@@ -165,7 +168,6 @@ const styles = {
     marginBottom: "2rem",
     flexWrap: "wrap" as const,
   },
-
   leftColumn: {
     display: "flex",
     flexDirection: "column" as const,
@@ -176,5 +178,20 @@ const styles = {
   scaledComponent: {
     transform: "scale(0.75)",
     transformOrigin: "center",
+  },
+  centerColumn: {
+    display: "flex",
+    flexDirection: "row" as const,
+    gap: "2rem",
+    alignItems: "center",
+    justifyContent: "center",
+    flexWrap: "wrap" as const,
+  },
+  rightColumn: {
+    display: "flex",
+    flexDirection: "column" as const,
+    gap: "1.2rem",
+    alignItems: "center",
+    justifyContent: "center",
   },
 };
