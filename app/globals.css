@@ -1,6 +1,12 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --button-bg: #2e2e2e;
+  --button-hover: #3d3d3d;
+  --button-text: #ffffff;
+  --kaspa: #29ffc6;
+  --solana: #8b43f1;
+  --xrp: #00bfff;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -41,8 +47,39 @@ a {
   }
 }
 
+/* Police digitale */
 @font-face {
   font-family: "Digital7";
   src: url("/fonts/digital-7-mono.ttf") format("truetype");
   font-display: swap;
+}
+
+/* Boutons de wallet */
+.wallet-button {
+  padding: 0.8rem 1.5rem;
+  border-radius: 20px;
+  background: var(--button-bg);
+  color: var(--button-text);
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 2px 2px 6px #111, -2px -2px 6px #3a3a3a;
+  transition: all 0.2s ease;
+}
+
+.wallet-button:hover {
+  background: var(--button-hover);
+}
+
+/* Optionnel : coloriser par blockchain */
+.wallet-button.kaspa {
+  border: 1px solid var(--kaspa);
+}
+
+.wallet-button.solana {
+  border: 1px solid var(--solana);
+}
+
+.wallet-button.xrp {
+  border: 1px solid var(--xrp);
 }

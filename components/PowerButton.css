@@ -1,0 +1,43 @@
+.power-button-wrapper {
+  position: relative;
+  width: 100px;
+  cursor: pointer;
+  transition: transform 0.1s ease-in-out;
+}
+.power-button-wrapper:active {
+  transform: scale(0.98);
+}
+
+.power-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Superposition de lumière rouge uniquement en mode ON */
+.red-light {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: red;
+  opacity: 0.6;
+  box-shadow: 0 0 6px red, 0 0 12px #ff2222, 0 0 24px #ff4444;
+  animation: pulseRed 1.5s infinite ease-in-out;
+  z-index: 2;
+}
+
+@keyframes pulseRed {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: translateX(-50%) scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translateX(-50%) scale(1.1);
+  }
+}

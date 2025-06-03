@@ -1,0 +1,79 @@
+.plutonium-wrapper {
+  position: relative;
+  width: 180px;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: pulseContainer 2.5s infinite ease-in-out;
+}
+
+.plutonium-img {
+  width: 100%;
+  height: auto;
+  z-index: 1;
+  filter: drop-shadow(0 0 8px #ffd700aa); /* glow jaune doux */
+}
+
+.glow-effect {
+  position: absolute;
+  width: 120%; /* ⬅️ réduit la taille du halo */
+  height: 120%;
+  background: radial-gradient(circle, #ffcc00 10%, transparent 75%);
+  border-radius: 50%;
+  z-index: 0;
+  opacity: 0.15; /* ⬅️ moins visible */
+  animation: glow 2.8s infinite ease-in-out;
+}
+.inner-red-glow {
+  position: absolute;
+  top: 28%;
+  left: 44%;
+  width: 20px;
+  height: 55%;
+  background: #ff0000;
+  opacity: 0.4;
+  border-radius: 8px;
+  box-shadow: 0 0 12px #ff0000, 0 0 24px #ff2222, 0 0 40px #ff5555,
+    0 0 60px #ff7777;
+  animation: pulseInner 2.5s infinite ease-in-out;
+  z-index: 2;
+}
+.plutonium-inactive {
+  opacity: 0.8;
+  filter: brightness(0.9) grayscale(30%);
+  transition: opacity 0.3s ease, filter 0.3s ease;
+}
+
+@keyframes glow {
+  0%,
+  100% {
+    opacity: 0.05; /* ⬇️ réduit */
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.2;
+    transform: scale(0.05); /* ⬇️ moins fort */
+  }
+}
+
+@keyframes pulseContainer {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.015);
+  }
+}
+@keyframes pulseInner {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scaleY(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scaleY(1.03);
+  }
+}

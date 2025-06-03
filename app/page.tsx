@@ -1,61 +1,56 @@
 "use client";
 
-import ConnectWallet from "@/components/ConnectWallet";
+import WalletSection from "@/components/wallets/WalletSection";
 import TimeCircuitOverlay from "@/components/TimeCircuitOverlay";
 import FluxCapacitor from "@/components/FluxCapacitor";
 import FuelGauge from "@/components/FuelGauge";
 import SpeedDisplay from "@/components/SpeedDisplay";
-
-<SpeedDisplay />;
+import TemperatureGauge from "@/components/TemperatureGauge";
+import PlutoniumCapsule from "@/components/PlutoniumCapsule";
+import PlutoniumEmptyCapsule from "@/components/PlutoniumEmptyCapsule";
+import FuelCan from "@/components/FuelCan";
+import PowerButton from "@/components/PowerButton";
+import { PowerProvider } from "@/components/PowerContext";
+import PlutoniumButton from "@/components/PlutoniumButton";
 
 export default function Home() {
+  const hasPlutonium = true;
+  const isFuelAvailable = true;
+
   return (
-    <main style={styles.main}>
-      <h1 style={styles.title}>⛏️ Time Circuit APY</h1>
-      <FuelGauge level={90} />
-      <SpeedDisplay />
-      <FluxCapacitor />
+    <PowerProvider>
+      <main style={styles.main}>
+        <h1 style={styles.title}>⛏️ Time Circuit APY</h1>
+        <FuelGauge level={90} />
+        <SpeedDisplay />
+        <FluxCapacitor />
+        <TemperatureGauge />
 
-      <TimeCircuitOverlay />
+        <FuelCan active={isFuelAvailable} />
+        <PowerButton initial={false} />
+        <PlutoniumButton />
+        <TimeCircuitOverlay />
 
-      <div style={styles.buttonGroup}>
-        <button
-          style={styles.neomorphButton}
-          onMouseDown={(e) =>
-            (e.currentTarget.style.transform = "translateY(2px)")
-          }
-          onMouseUp={(e) =>
-            (e.currentTarget.style.transform = "translateY(0px)")
-          }
-        >
-          Démarrer
-        </button>
-        <button
-          style={styles.neomorphButton}
-          onMouseDown={(e) =>
-            (e.currentTarget.style.transform = "translateY(2px)")
-          }
-          onMouseUp={(e) =>
-            (e.currentTarget.style.transform = "translateY(0px)")
-          }
-        >
-          Récolter
-        </button>
-        <button
-          style={styles.neomorphButton}
-          onMouseDown={(e) =>
-            (e.currentTarget.style.transform = "translateY(2px)")
-          }
-          onMouseUp={(e) =>
-            (e.currentTarget.style.transform = "translateY(0px)")
-          }
-        >
-          Refroidir
-        </button>
-      </div>
+        <div style={styles.buttonGroup}>
+          {["Démarrer", "Récolter", "Refroidir"].map((label) => (
+            <button
+              key={label}
+              style={styles.neomorphButton}
+              onMouseDown={(e) =>
+                (e.currentTarget.style.transform = "translateY(2px)")
+              }
+              onMouseUp={(e) =>
+                (e.currentTarget.style.transform = "translateY(0px)")
+              }
+            >
+              {label}
+            </button>
+          ))}
+        </div>
 
-      <ConnectWallet />
-    </main>
+        <WalletSection />
+      </main>
+    </PowerProvider>
   );
 }
 
@@ -92,5 +87,8 @@ const styles = {
     fontSize: "1rem",
     cursor: "pointer",
     transition: "transform 0.1s ease-in-out",
+  },
+  section: {
+    marginBottom: "2rem",
   },
 };

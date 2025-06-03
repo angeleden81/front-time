@@ -1,0 +1,54 @@
+.plutonium-button-wrapper {
+  position: relative;
+  width: 100px;
+  cursor: pointer;
+  transition: transform 0.1s ease-in-out;
+}
+
+.plutonium-button-wrapper {
+  position: relative;
+  width: 100px;
+  cursor: pointer;
+  transition: transform 0.1s ease-in-out;
+
+  /* ⛔️ annule tout glow hérité */
+  filter: none !important;
+}
+
+.plutonium-img {
+  width: 100%;
+  height: auto;
+  display: block;
+
+  /* empêche les filtres globaux */
+  filter: none !important;
+  box-shadow: none !important;
+}
+
+/* Lumière orange sans halo autour du bouton */
+.orange-light {
+  position: absolute;
+  top: 11px;
+  left: 49%;
+  transform: translateX(-50%);
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: orange;
+  opacity: 0.7;
+  box-shadow: 0 0 4px orange; /* LÉGER glow uniquement sur la LED */
+  animation: pulseOrange 1.5s infinite ease-in-out;
+  z-index: 2;
+}
+
+@keyframes pulseOrange {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: translateX(-50%) scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: translateX(-50%) scale(1.1);
+  }
+}

@@ -1,0 +1,53 @@
+.temp-gauge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  background: #000;
+  padding: 8px;
+  border-radius: 12px;
+}
+
+.temp-bar {
+  width: 30px;
+  height: 14px;
+  background: #111;
+  border-radius: 4px;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+/* Actives */
+.temp-bar.on.level-1,
+.temp-bar.on.level-2,
+.temp-bar.on.level-3 {
+  background: #00ff00;
+  box-shadow: 0 0 6px #00ff00aa;
+}
+
+.temp-bar.on.level-4,
+.temp-bar.on.level-5,
+.temp-bar.on.level-6,
+.temp-bar.on.level-7 {
+  background: #ffff00;
+  box-shadow: 0 0 6px #ffff00aa;
+}
+
+.temp-bar.on.level-8,
+.temp-bar.on.level-9,
+.temp-bar.on.level-10 {
+  background: #ff0000;
+  box-shadow: 0 0 6px #ff0000aa;
+}
+.temp-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.temp-label {
+  color: #fff;
+  font-family: "Orbitron", "Digital7", monospace;
+  font-size: 1rem;
+  letter-spacing: 2px;
+  user-select: none;
+}
