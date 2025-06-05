@@ -71,6 +71,19 @@ const KaswareWalletConnect = () => {
   useEffect(() => {
     if (!window.kasware) return;
 
+    const handleAccountsChanged = (accounts: string[]) => {
+      setAddress(accounts[0] || null);
+      fetchBalance();
+    };
+
+    const handleNetworkChanged = (net: string) => {
+      setNetwork(net);
+    };
+
+    const handleBalanceChanged = (res: any) => {
+      setBalance(res.balance?.total || 0);
+    };
+
     // Vérifie si l'utilisateur est déjà connecté
     window.kasware.getAccounts?.().then((accounts: string[]) => {
       if (accounts.length > 0) {
@@ -80,23 +93,19 @@ const KaswareWalletConnect = () => {
       }
     });
 
-    window.kasware.on("accountsChanged", (accounts: string[]) => {
-      setAddress(accounts[0] || null);
-      fetchBalance();
-    });
+    // Abonnement
+    window.kasware.on("accountsChanged", handleAccountsChanged);
+    window.kasware.on("networkChanged", handleNetworkChanged);
+    window.kasware.on("balanceChanged", handleBalanceChanged);
 
-    window.kasware.on("networkChanged", (net: string) => {
-      setNetwork(net);
-    });
-
-    window.kasware.on("balanceChanged", (res: any) => {
-      setBalance(res.balance?.total || 0);
-    });
-
+    // Nettoyage
     return () => {
-      window.kasware?.removeListener?.("accountsChanged");
-      window.kasware?.removeListener?.("networkChanged");
-      window.kasware?.removeListener?.("balanceChanged");
+      window.kasware?.removeListener?.(
+        "accountsChanged",
+        handleAccountsChanged
+      );
+      window.kasware?.removeListener?.("networkChanged", handleNetworkChanged);
+      window.kasware?.removeListener?.("balanceChanged", handleBalanceChanged);
     };
   }, []);
 
